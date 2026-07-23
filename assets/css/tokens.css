@@ -1,0 +1,57 @@
+/* Voica — дизайн-токены (единый источник правды). Правь тут — меняется весь сайт.
+   Полное описание значений и правил — в BRAND.md. */
+:root{
+  /* Цвета — светлая тема (по умолчанию, если система светлая) */
+  --paper:#F3F5FA;        /* фон-«бумага», прохладный off-white с синим подтоном */
+  --surface:#FFFFFF;      /* карточки/поверхности */
+  --surface-2:#EEF1F8;    /* второстепенные плашки, чипы */
+  --ink:#171B22;          /* основной текст (сине-холодные чернила) */
+  --ink-soft:#5B6472;     /* вторичный текст */
+  --ink-faint:#8A93A3;    /* третичный текст, подписи */
+  --line:#E3E7F0;         /* тонкие линии */
+  --line-strong:#D3D9E6;  /* заметные границы, инпуты */
+  --brand:#1A6BE0;        /* бренд-синий: CTA, ссылки, акценты */
+  --brand-deep:#0E4FB0;   /* ховер брендовых элементов */
+  --brand-tint:#E7F0FE;   /* мягкая заливка под бренд */
+  --wave:#12A8C9;         /* циан-«волна» — фирменный микро-акцент, НЕ заливки */
+  --ok:#2A9D57;           /* «приватно/офлайн» зелёный */
+  --ok-tint:#E4F4EA;
+
+  /* Радиусы (в стиле macOS) */
+  --radius-card:16px; --radius-btn:10px; --radius-sm:8px;
+  /* Тени */
+  --shadow-card:0 1px 2px rgba(19,27,45,.04), 0 8px 30px -12px rgba(19,27,45,.14);
+
+  /* Шрифты */
+  --font-display:"Onest",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-body:"Golos Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  /* Раскладка */
+  --wrap:1140px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* Тёмная тема — по системной настройке */
+@media (prefers-color-scheme:dark){:root{
+  --paper:#0E1116; --surface:#151A21; --surface-2:#1B222C;
+  --ink:#ECEFF3; --ink-soft:#98A2B3; --ink-faint:#6B7686;
+  --line:#242B35; --line-strong:#313A47;
+  --brand:#4E93FF; --brand-deep:#3A7AE0; --brand-tint:#14243D;
+  --wave:#45CEEB; --ok:#34C759; --ok-tint:#12271A;
+  --shadow-card:0 1px 2px rgba(0,0,0,.3), 0 10px 34px -14px rgba(0,0,0,.6);
+}}
+
+/* Ручной тумблер (data-theme на <html>) переопределяет систему в обе стороны */
+:root[data-theme="light"]{
+  --paper:#F3F5FA;--surface:#FFFFFF;--surface-2:#EEF1F8;--ink:#171B22;--ink-soft:#5B6472;--ink-faint:#8A93A3;
+  --line:#E3E7F0;--line-strong:#D3D9E6;--brand:#1A6BE0;--brand-deep:#0E4FB0;--brand-tint:#E7F0FE;
+  --wave:#12A8C9;--ok:#2A9D57;--ok-tint:#E4F4EA;
+  --shadow-card:0 1px 2px rgba(19,27,45,.04), 0 8px 30px -12px rgba(19,27,45,.14);
+}
+:root[data-theme="dark"]{
+  --paper:#0E1116;--surface:#151A21;--surface-2:#1B222C;--ink:#ECEFF3;--ink-soft:#98A2B3;--ink-faint:#6B7686;
+  --line:#242B35;--line-strong:#313A47;--brand:#4E93FF;--brand-deep:#3A7AE0;--brand-tint:#14243D;
+  --wave:#45CEEB;--ok:#34C759;--ok-tint:#12271A;
+  --shadow-card:0 1px 2px rgba(0,0,0,.3), 0 10px 34px -14px rgba(0,0,0,.6);
+}

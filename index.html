@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voica — голосовая диктовка с пунктуацией для Mac и Windows</title>
+<meta name="description" content="Диктуйте голосом — получайте чистый текст с точками и запятыми. Облачный движок Groq Whisper или полностью офлайн на устройстве (GigaAM). Открытый код, свой ключ.">
+<link rel="canonical" href="https://voica.ru/">
+<link rel="alternate" hreflang="ru" href="https://voica.ru/">
+<link rel="alternate" hreflang="en" href="https://voica.ru/en/">
+<link rel="alternate" hreflang="x-default" href="https://voica.ru/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Voica — голосовая диктовка с пунктуацией для Mac и Windows">
+<meta property="og:description" content="Диктуйте голосом — получайте чистый текст с точками и запятыми. Облачный движок Groq Whisper или полностью офлайн на устройстве (GigaAM). Открытый код, свой ключ.">
+<meta property="og:url" content="https://voica.ru/">
+<meta property="og:image" content="https://voica.ru/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<div class="nav"><div class="wrap nav-in">
+  <a class="brand" href="./"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> Voica</a>
+  <div class="nav-right">
+    <a class="nav-link hide-sm" href="#engines">Движки</a>
+    <a class="nav-link hide-sm" href="#privacy">Приватность</a>
+    <a class="nav-link" href="https://github.com/Inhum">GitHub</a>
+    <a class="icon-btn" href="en/" hreflang="en">EN</a>
+    <button class="icon-btn" id="theme" aria-label="Theme">
+      <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="btn btn-primary" href="#download">Скачать</a>
+  </div>
+</div></div>
+
+<header class="hero"><div class="wrap hero-grid">
+  <div>
+    <div class="eyebrow"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> <span>Голосовая диктовка для Mac и Windows</span></div>
+    <h1>Диктуйте — и получайте готовый текст <span class="accent">с пунктуацией</span></h1>
+    <p class="lede">Voica живёт в строке меню (или в трее). Нажали клавишу, сказали — и текст с точками, запятыми и «ёлочками» появляется прямо там, где вы печатаете. В облаке через Groq Whisper или полностью офлайн, на вашем устройстве.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#download">Скачать</a>
+      <a class="btn btn-ghost" href="#how">Как это работает</a>
+    </div>
+    <p class="hero-note">Mac (13+, Apple Silicon) и Windows · <b>бесплатно</b> — свой ключ Groq или локальная модель</p>
+  </div>
+  <div class="mock" aria-hidden="true">
+    <div class="mock-bar"><span class="mlive"><i style="animation-delay:0.0s"></i><i style="animation-delay:0.1s"></i><i style="animation-delay:0.2s"></i><i style="animation-delay:0.3s"></i><i style="animation-delay:0.4s"></i></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <span class="mclock">14:32</span></div>
+    <div class="mock-body">
+      <span class="mrec"><b></b>ЗАПИСЬ · ЛОКАЛЬНО</span>
+      <div class="mwv"><i style="animation-delay:0.00s"></i><i style="animation-delay:0.08s"></i><i style="animation-delay:0.16s"></i><i style="animation-delay:0.24s"></i><i style="animation-delay:0.32s"></i><i style="animation-delay:0.40s"></i><i style="animation-delay:0.48s"></i><i style="animation-delay:0.56s"></i><i style="animation-delay:0.64s"></i><i style="animation-delay:0.72s"></i><i style="animation-delay:0.80s"></i><i style="animation-delay:0.88s"></i><i style="animation-delay:0.96s"></i><i style="animation-delay:1.04s"></i></div>
+      <div class="mres">Поставил <span class="hl">GigaAM</span> и развернул <span class="hl">Kubernetes</span> через <span class="hl">kubectl</span>.</div>
+      <div class="mhint"><span class="mkbd">⌥</span> удерживайте, чтобы говорить · текст уже в буфере</div>
+    </div>
+  </div>
+</div></header>
+
+<section id="engines"><div class="wrap">
+  <div class="eng-visual"><div class="epanel" aria-hidden="true">
+    <div class="cap">Voica — Настройки · Основные</div>
+    <h4>Движок распознавания</h4>
+    <div class="seg"><div>Облако (Groq)</div><div class="on">Локально (офлайн)</div></div>
+    <div class="estatus"><span class="dot-ok">✓</span> <span>Работает: GigaAM v3 — на этом устройстве</span></div>
+    <p class="esub">Без интернета и без ключа. Аудио не покидает устройство.</p>
+  </div></div>
+  <div class="sec-head"><div class="eyebrow"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> <span>Два движка, один хоткей</span></div><h2>Облако или полностью офлайн — на ваш выбор</h2><p class="lede">Переключатель прямо в настройках. Оба движка быстрые и ставят пунктуацию; выбираете, что важнее — не занимать место на диске или не отправлять аудио в облако.</p></div>
+  <div class="engines">
+    <div class="engine">
+      <span class="tag tag-blue">Облако</span><h3>Groq Whisper</h3>
+      <p>Быстрое и точное распознавание на серверах Groq (<code>whisper-large-v3-turbo</code>). Ничего не занимает на устройстве — модель качать не нужно. Нужен свой ключ Groq (бесплатный) и интернет.</p><div class="chips"><span class="chip">точность</span><span class="chip">без загрузки</span><span class="chip">мультиязык</span></div>
+    </div>
+    <div class="engine local">
+      <span class="tag tag-ok">Локально · офлайн</span>
+      <h3><span class="wave" style="height:22px" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> GigaAM — на вашем устройстве</h3>
+      <p>Модель <b>GigaAM от Сбера</b> работает целиком на устройстве — быстро, без интернета и без ключа. Аудио не покидает ваш компьютер. Нативно-русское распознавание с пунктуацией из коробки. Разовая загрузка модели: ~400 МБ на Mac, ~200 МБ на Windows.</p><div class="chips"><span class="chip">офлайн</span><span class="chip">без ключа</span><span class="chip">приватно</span><span class="chip">русский</span></div>
+      <p class="sber"><b>Почему это редкость:</b> нативно-русская локальная диктовка — почти пустая ниша. Западные приложения заточены под английский; GigaAM — открытая модель Сбера, сильная именно на русском.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="privacy"><div class="wrap"><div class="privacy">
+  <span class="wave pw" style="height:56px" aria-hidden="true"><i style="width:5px"></i><i style="width:5px"></i><i style="width:5px"></i><i style="width:5px"></i><i style="width:5px"></i><i style="width:5px"></i></span>
+  <div><h2>Приватность по умолчанию</h2><p>Аудио уходит только в Groq на распознавание — или <b style="color:var(--wave)">не уходит никуда</b>, если выбран локальный движок. Ключ хранится в защищённом файле на вашем устройстве. Нет бэкенда, нет телеметрии, нет аккаунтов. Код открыт под MIT — можно проверить.</p></div>
+</div></div></section>
+
+<section id="how"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> <span>Как это работает</span></div><h2>Три шага — и текст на месте</h2></div>
+  <div class="steps">
+    <div class="step"><h3>Нажмите клавишу</h3><p>Горячая клавиша по умолчанию — правый Option на Mac, правый Alt на Windows. Режим на выбор: удерживать во время речи или нажать один раз.</p></div>
+    <div class="step"><h3>Говорите</h3><p>Значок в строке меню (в трее) показывает запись. Говорите естественно — о знаках препинания позаботится Voica.</p></div>
+    <div class="step"><h3>Готово</h3><p>Через секунду текст уже вставлен в активное поле. И всегда лежит в буфере обмена — на всякий случай.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><div class="eyebrow"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> <span>Что внутри</span></div><h2>Мелочи, из которых складывается «просто работает»</h2></div>
+  <div class="feat"><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> Пунктуация из коробки</h3><p>Точки, запятые, вопросы, «ёлочки», буква ё — без ручной правки.</p></div><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> Словарь терминов</h3><p>Свои названия и жаргон + ИИ-исправление: «кубернетес» → Kubernetes.</p></div><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> Авто-вставка</h3><p>Текст появляется прямо в поле — или в редактируемом окне, на выбор.</p></div><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> История диктовок</h3><p>Все расшифровки под рукой: копировать, прослушать аудио, удалить.</p></div><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> Русский и английский</h3><p>Смешанная речь распознаётся, интерфейс — на языке системы.</p></div><div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> Открытый код</h3><p>MIT, никаких облачных зависимостей, кроме вашего Groq.</p></div></div>
+</div></section>
+
+<section id="download" class="cta"><div class="wrap"><div class="cta-box">
+  <h2>Установите Voica за минуту</h2><p>Скачайте и откройте — перетащите в «Программы» (Mac) или запустите .exe (Windows) — вставьте ключ Groq или включите локальный движок и работайте офлайн.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-primary" href="https://github.com/Inhum/voica/releases/latest">Скачать для Mac</a>
+    <a class="btn btn-ghost" href="https://github.com/Inhum/voica-win/releases/latest">Скачать для Windows</a>
+  </div>
+  <p class="hero-note" style="margin-top:20px">Mac 13+ (Apple Silicon) · Windows 10/11 · приложение пока без подписи — при первом запуске система переспросит.</p>
+</div></div></section>
+
+<footer class="foot"><div class="wrap foot-in">
+  <div>© 2026 Ivan Ushakov · MIT · Открытая разработка</div>
+  <div class="foot-mono">whisper-large-v3-turbo · gigaam-v3-e2e-ctc · GigaAM © Сбер</div>
+</div></footer>
+
+<script>
+(function(){var r=document.documentElement;try{var t=localStorage.getItem("voica-theme");if(t)r.setAttribute("data-theme",t);}catch(e){}
+document.getElementById("theme").onclick=function(){var c=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");var n=c==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("voica-theme",n);}catch(e){}};})();
+</script>
+</body>
+</html>
