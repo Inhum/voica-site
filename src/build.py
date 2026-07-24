@@ -17,6 +17,7 @@ C = {
  "nav.engines":("Движки","Engines"),
  "nav.privacy":("Приватность","Privacy"),
  "nav.faq":("Вопросы","FAQ"),
+ "nav.docs":("Документация","Docs"),
  "nav.download":("Скачать","Download"),
  "hero.eyebrow":("Голосовая диктовка для Mac и Windows","Voice dictation for Mac & Windows"),
  "hero.h1":('Диктуйте — и получайте готовый текст <span class="accent">с пунктуацией</span>',
@@ -122,6 +123,8 @@ def render(lang):
     other = "en/" if lang=="ru" else "../"
     other_lang = "EN" if lang=="ru" else "RU"
     canon = SITE + ("/" if lang=="ru" else "/en/")
+    # README нужного языка на GitHub (RU → README.ru.md, EN → README.md)
+    readme_url = "https://github.com/Inhum/voica/blob/main/" + ("README.ru.md" if lang=="ru" else "README.md")
     ld_json = json.dumps({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -180,6 +183,7 @@ def render(lang):
     <a class="nav-link hide-sm" href="#engines">{t["nav.engines"]}</a>
     <a class="nav-link hide-sm" href="#privacy">{t["nav.privacy"]}</a>
     <a class="nav-link hide-sm" href="#faq">{t["nav.faq"]}</a>
+    <a class="nav-link hide-sm" href="{readme_url}">{t["nav.docs"]}</a>
     <a class="nav-link" href="https://github.com/Inhum">GitHub</a>
     <a class="icon-btn" href="{other}" hreflang="{other_lang.lower()}">{other_lang}</a>
     <button class="icon-btn" id="theme" aria-label="Theme">
