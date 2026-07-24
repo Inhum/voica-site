@@ -1,0 +1,25 @@
+# Voica
+
+> Voice dictation with punctuation for macOS and Windows. Recognize speech in the cloud
+> (Groq Whisper) or fully offline on-device (Sber's GigaAM model). Open source (MIT),
+> bring your own API key, no telemetry. Native-Russian dictation is the standout feature.
+
+## What it is
+- A menu-bar (macOS) / tray (Windows) app. Press a hotkey, speak, and clean text **with
+  punctuation** is inserted right where you are typing (and always copied to the clipboard).
+- Two engines, switchable in Settings:
+  - **Cloud** — Groq Whisper (`whisper-large-v3-turbo`). Fast, accurate, nothing to download;
+    needs your own free Groq key and internet.
+  - **Local (offline)** — Sber's **GigaAM v3** model runs entirely on-device. No internet,
+    no key, audio never leaves the computer. One-time model download (~400 MB macOS via
+    Core ML, ~200 MB Windows via ONNX). Native Russian with punctuation out of the box.
+- Extras: term dictionary + AI term fixing, dictation history, auto-insert, Russian & English.
+- Privacy: audio goes only to Groq, or nowhere at all with the local engine. No backend,
+  no telemetry, no accounts. Key stored in a protected local file.
+- Platforms: macOS 13+ (Apple Silicon), Windows 10/11. Free.
+
+## Links
+- Website: https://voica.ru/ (Russian), https://voica.ru/en/ (English)
+- Download for macOS: https://github.com/Inhum/voica/releases/latest
+- Download for Windows: https://github.com/Inhum/voica-win/releases/latest
+- Source code: https://github.com/Inhum
