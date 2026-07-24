@@ -2,7 +2,7 @@
 """Генератор сайта Voica. Контент двуязычный (единый источник ниже) → две статические
 страницы: index.html (RU, корень) и en/index.html (EN). Текст вшивается в HTML (SEO),
 без рантайм-i18n. Запуск: python3 src/build.py  (из корня репозитория)."""
-import os
+import os, json
 
 SITE = "https://voica.ru"
 
@@ -103,6 +103,21 @@ def render(lang):
     other = "en/" if lang=="ru" else "../"
     other_lang = "EN" if lang=="ru" else "RU"
     canon = SITE + ("/" if lang=="ru" else "/en/")
+    ld_json = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Voica",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "macOS 13+, Windows 10/11",
+        "description": m["desc"],
+        "url": canon,
+        "inLanguage": lang,
+        "softwareVersion": "0.9",
+        "license": "https://opensource.org/licenses/MIT",
+        "downloadUrl": "https://github.com/Inhum/voica/releases/latest",
+        "author": {"@type": "Person", "name": "Ivan Ushakov"},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    }, ensure_ascii=False)
     mlive = "".join(f'<i style="animation-delay:{i*.1:.1f}s"></i>' for i in range(5))
     mwv = "".join(f'<i style="animation-delay:{i*.08:.2f}s"></i>' for i in range(14))
     feats = "".join(
@@ -125,6 +140,7 @@ def render(lang):
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{SITE}/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{ld_json}</script>
 <link rel="icon" href="{base}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{base}assets/css/site.css">
 </head>
