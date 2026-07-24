@@ -244,6 +244,9 @@ def render(lang):
 (function(){{var r=document.documentElement;try{{var t=localStorage.getItem("voica-theme");if(t)r.setAttribute("data-theme",t);}}catch(e){{}}
 document.getElementById("theme").onclick=function(){{var c=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");var n=c==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{{localStorage.setItem("voica-theme",n);}}catch(e){{}}}};}})();
 </script>
+<!-- GoatCounter — cookieless-аналитика, без кук и баннера согласия -->
+<script data-goatcounter="https://voica.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>'''
 
