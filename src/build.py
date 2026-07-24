@@ -5,6 +5,7 @@
 import os, json
 
 SITE = "https://voica.ru"
+EXT = 'target="_blank" rel="noopener"'   # внешние ссылки открываем в новом табе (лендинг остаётся)
 
 META = {
   "ru": {"title": "Voica — голосовая диктовка с пунктуацией для Mac и Windows",
@@ -183,8 +184,8 @@ def render(lang):
     <a class="nav-link hide-sm" href="#engines">{t["nav.engines"]}</a>
     <a class="nav-link hide-sm" href="#privacy">{t["nav.privacy"]}</a>
     <a class="nav-link hide-sm" href="#faq">{t["nav.faq"]}</a>
-    <a class="nav-link hide-sm" href="{readme_url}">{t["nav.docs"]}</a>
-    <a class="nav-link" href="https://github.com/Inhum">GitHub</a>
+    <a class="nav-link hide-sm" {EXT} href="{readme_url}">{t["nav.docs"]}</a>
+    <a class="nav-link hide-sm" {EXT} href="https://github.com/Inhum">GitHub</a>
     <a class="icon-btn" href="{other}" hreflang="{other_lang.lower()}">{other_lang}</a>
     <button class="icon-btn" id="theme" aria-label="Theme">
       <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -268,14 +269,15 @@ def render(lang):
 <section id="download" class="cta"><div class="wrap"><div class="cta-box">
   <h2>{t["cta.h"]}</h2><p>{t["cta.body"]}</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a class="btn btn-primary" href="https://github.com/Inhum/voica/releases/latest">{t["cta.mac"]}</a>
-    <a class="btn btn-ghost" href="https://github.com/Inhum/voica-win/releases/latest">{t["cta.win"]}</a>
+    <a class="btn btn-primary" {EXT} href="https://github.com/Inhum/voica/releases/latest">{t["cta.mac"]}</a>
+    <a class="btn btn-ghost" {EXT} href="https://github.com/Inhum/voica-win/releases/latest">{t["cta.win"]}</a>
   </div>
   <p class="hero-note" style="margin-top:20px">{t["cta.note"]}</p>
 </div></div></section>
 
 <footer class="foot"><div class="wrap foot-in">
   <div>{t["foot.left"]}</div>
+  <nav class="foot-nav"><a {EXT} href="https://github.com/Inhum">GitHub</a> · <a {EXT} href="{readme_url}">{t["nav.docs"]}</a></nav>
   <div class="foot-mono">whisper-large-v3-turbo · gigaam-v3-e2e-ctc · GigaAM © {t["foot.sber"]}</div>
 </div></footer>
 
