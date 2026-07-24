@@ -16,6 +16,7 @@ META = {
 C = {
  "nav.engines":("Движки","Engines"),
  "nav.privacy":("Приватность","Privacy"),
+ "nav.faq":("Вопросы","FAQ"),
  "nav.download":("Скачать","Download"),
  "hero.eyebrow":("Голосовая диктовка для Mac и Windows","Voice dictation for Mac & Windows"),
  "hero.h1":('Диктуйте — и получайте готовый текст <span class="accent">с пунктуацией</span>',
@@ -90,6 +91,24 @@ C = {
              "Mac 13+ (Apple Silicon) · Windows 10/11 · the app isn't signed yet — your system will ask once on first launch."),
  "foot.left":("© 2026 Ivan Ushakov · MIT · Открытая разработка","© 2026 Ivan Ushakov · MIT · Built in the open"),
  "foot.sber":("Сбер","Sber"),
+ "faq.eyebrow":("Вопросы и ответы","Questions & answers"),
+ "faq.title":("Частые вопросы","Frequently asked questions"),
+ "faq.q1":("Нужен ли интернет?","Do I need an internet connection?"),
+ "faq.a1":("Для облачного движка — да. Локальный движок работает полностью офлайн: без интернета, без ключа, и аудио не покидает устройство.","For the cloud engine, yes. The local engine works fully offline — no internet, no key, and audio never leaves your device."),
+ "faq.q2":("Это платно?","Is it free?"),
+ "faq.a2":("Voica бесплатна, код открыт под лицензией MIT. Для облачного движка нужен свой бесплатный ключ Groq; локальный движок работает вообще без ключа.","Voica is free and open source under the MIT license. The cloud engine needs your own free Groq key; the local engine needs no key at all."),
+ "faq.q3":("Какие языки поддерживаются?","Which languages are supported?"),
+ "faq.a3":("Русский и английский, включая смешанную речь. Локальная модель GigaAM особенно сильна на русском и ставит пунктуацию из коробки.","Russian and English, including mixed speech. The local GigaAM model is especially strong on Russian and adds punctuation out of the box."),
+ "faq.q4":("Мои данные приватны?","Is my data private?"),
+ "faq.a4":("Аудио уходит только в Groq на распознавание — или никуда, если выбран локальный движок. Нет бэкенда, телеметрии и аккаунтов; ключ хранится в защищённом файле на вашем устройстве.","Audio goes only to Groq for recognition — or nowhere at all with the local engine. No backend, no telemetry, no accounts; your key is kept in a protected file on your device."),
+ "faq.q5":("Какие системы поддерживаются?","Which systems are supported?"),
+ "faq.a5":("macOS 13 и новее (Apple Silicon) и Windows 10/11.","macOS 13 and later (Apple Silicon) and Windows 10/11."),
+ "faq.q6":("Voica ставит знаки препинания?","Does Voica add punctuation?"),
+ "faq.a6":("Да. Оба движка автоматически расставляют точки, запятые, вопросительные знаки и «ёлочки» — без ручной правки.","Yes. Both engines automatically add periods, commas, question marks and quotation marks — no manual cleanup."),
+ "faq.q7":("Чем локальный движок отличается от облачного?","How does the local engine differ from the cloud one?"),
+ "faq.a7":("Облако — быстро и точно, ничего не нужно качать, но требуется ключ и интернет. Локально — приватно и офлайн, но модель скачивается один раз (~400 МБ на Mac, ~200 МБ на Windows).","Cloud is fast and accurate with nothing to download, but needs a key and internet. Local is private and offline, but the model downloads once (~400 MB on Mac, ~200 MB on Windows)."),
+ "faq.q8":("Почему при первом запуске предупреждение о безопасности?","Why the security warning on first launch?"),
+ "faq.a8":("Приложение пока не подписано сертификатом разработчика, поэтому система переспрашивает один раз: на macOS — «Open Anyway» в разделе Privacy & Security, на Windows — подтверждение SmartScreen. Дальше Voica открывается обычным способом.","The app isn't signed with a developer certificate yet, so your system asks once: on macOS use “Open Anyway” in Privacy & Security, on Windows confirm the SmartScreen prompt. After that Voica opens normally."),
 }
 
 WAVE = '<span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>'
@@ -123,6 +142,15 @@ def render(lang):
     feats = "".join(
         f'<div class="feat-i"><h3><span class="wm"><i></i><i></i><i></i></span> {t[f"feat.{n}t"]}</h3><p>{t[f"feat.{n}b"]}</p></div>'
         for n in range(1,7))
+    faqs = "".join(
+        f'<details><summary>{t[f"faq.q{n}"]}</summary><p>{t[f"faq.a{n}"]}</p></details>'
+        for n in range(1,9))
+    faq_ld = json.dumps({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": t[f"faq.q{n}"],
+                        "acceptedAnswer": {"@type": "Answer", "text": t[f"faq.a{n}"]}}
+                       for n in range(1, 9)],
+    }, ensure_ascii=False)
     return f'''<!doctype html>
 <html lang="{lang}" prefix="og: https://ogp.me/ns#">
 <head>
@@ -141,6 +169,7 @@ def render(lang):
 <meta property="og:image" content="{SITE}/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{ld_json}</script>
+<script type="application/ld+json">{faq_ld}</script>
 <link rel="icon" href="{base}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{base}assets/css/site.css">
 </head>
@@ -150,6 +179,7 @@ def render(lang):
   <div class="nav-right">
     <a class="nav-link hide-sm" href="#engines">{t["nav.engines"]}</a>
     <a class="nav-link hide-sm" href="#privacy">{t["nav.privacy"]}</a>
+    <a class="nav-link hide-sm" href="#faq">{t["nav.faq"]}</a>
     <a class="nav-link" href="https://github.com/Inhum">GitHub</a>
     <a class="icon-btn" href="{other}" hreflang="{other_lang.lower()}">{other_lang}</a>
     <button class="icon-btn" id="theme" aria-label="Theme">
@@ -224,6 +254,11 @@ def render(lang):
 <section><div class="wrap">
   <div class="sec-head">{eyebrow(t["feat.eyebrow"])}<h2>{t["feat.title"]}</h2></div>
   <div class="feat">{feats}</div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="sec-head">{eyebrow(t["faq.eyebrow"])}<h2>{t["faq.title"]}</h2></div>
+  <div class="faq">{faqs}</div>
 </div></section>
 
 <section id="download" class="cta"><div class="wrap"><div class="cta-box">
