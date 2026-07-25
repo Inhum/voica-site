@@ -126,6 +126,7 @@ def render(lang):
     canon = SITE + ("/" if lang=="ru" else "/en/")
     # README нужного языка на GitHub (RU → README.ru.md, EN → README.md)
     readme_url = "https://github.com/Inhum/voica/blob/main/" + ("README.ru.md" if lang=="ru" else "README.md")
+    og_img = "og.png" if lang=="ru" else "og.en.png"   # своя og-картинка на язык (текст на карточке)
     ld_json = json.dumps({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -170,7 +171,7 @@ def render(lang):
 <meta property="og:title" content="{m["title"]}">
 <meta property="og:description" content="{m["desc"]}">
 <meta property="og:url" content="{canon}">
-<meta property="og:image" content="{SITE}/assets/img/og.png">
+<meta property="og:image" content="{SITE}/assets/img/{og_img}">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{ld_json}</script>
 <script type="application/ld+json">{faq_ld}</script>
@@ -277,7 +278,7 @@ def render(lang):
 
 <footer class="foot"><div class="wrap foot-in">
   <div>{t["foot.left"]}</div>
-  <nav class="foot-nav"><a {EXT} href="https://github.com/Inhum">GitHub</a> · <a {EXT} href="{readme_url}">{t["nav.docs"]}</a></nav>
+  <nav class="foot-nav"><a {EXT} href="https://github.com/Inhum">GitHub</a> · <a {EXT} href="{readme_url}">{t["nav.docs"]}</a> · <a {EXT} href="https://t.me/ai_weekly_brief">AI Weekly Brief</a></nav>
   <div class="foot-mono">whisper-large-v3-turbo · gigaam-v3-e2e-ctc · GigaAM © {t["foot.sber"]}</div>
 </div></footer>
 
