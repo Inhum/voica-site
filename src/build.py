@@ -32,6 +32,11 @@ C = {
  "mock.rec":("ЗАПИСЬ · ЛОКАЛЬНО","RECORDING · LOCAL"),
  "mock.res":('Поставил <span class="hl">GigaAM</span> и развернул <span class="hl">Kubernetes</span> через <span class="hl">kubectl</span>.',
              'I installed <span class="hl">GigaAM</span> and deployed <span class="hl">Kubernetes</span> via <span class="hl">kubectl</span>.'),
+ # «Сырой» текст распознавания и он же с подчёркнутыми неуверенными терминами — для анимации мокапа
+ "mock.raw":("поставил гигаам и развернул кубернетис через кубектел",
+             "i installed gigaam and deployed kubernetis via kubectl"),
+ "mock.marked":('поставил <span class="raw-term">гигаам</span> и развернул <span class="raw-term">кубернетис</span> через <span class="raw-term">кубектел</span>',
+                'i installed <span class="raw-term">gigaam</span> and deployed <span class="raw-term">kubernetis</span> via <span class="raw-term">kubectl</span>'),
  "mock.hint":("удерживайте, чтобы говорить · текст уже в буфере","hold to talk · text is already on the clipboard"),
  "eng.cap":("Voica — Настройки · Основные","Voica — Settings · General"),
  "eng.h4":("Движок распознавания","Recognition engine"),
@@ -214,7 +219,7 @@ def render(lang):
     <div class="mock-body">
       <span class="mrec"><b></b>{t["mock.rec"]}</span>
       <div class="mwv">{mwv}</div>
-      <div class="mres">{t["mock.res"]}</div>
+      <div class="mres" id="mres">{t["mock.res"]}</div>
       <div class="mhint"><span class="mkbd">⌥</span> {t["mock.hint"]}</div>
     </div>
   </div>
@@ -285,6 +290,41 @@ def render(lang):
 <script>
 (function(){{var r=document.documentElement;try{{var t=localStorage.getItem("voica-theme");if(t)r.setAttribute("data-theme",t);}}catch(e){{}}
 document.getElementById("theme").onclick=function(){{var c=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");var n=c==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{{localStorage.setItem("voica-theme",n);}}catch(e){{}}}};}})();
+</script>
+<!-- Анимация мокапа: печать «сырого» текста → красное подчёркивание → исправление, циклично.
+     Прогрессивно: без JS / при reduced-motion остаётся server-rendered чистый результат. -->
+<script>
+(function(){{
+  var el=document.getElementById("mres");
+  if(!el||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var RAW={json.dumps(t["mock.raw"])}, MARK={json.dumps(t["mock.marked"])}, FINAL={json.dumps(t["mock.res"])};
+  var wait=function(ms){{return new Promise(function(r){{setTimeout(r,ms);}});}};
+  function type(){{
+    el.textContent=""; el.classList.add("typing"); var i=0;
+    return new Promise(function(res){{
+      (function step(){{
+        if(i>=RAW.length){{el.classList.remove("typing"); res(); return;}}
+        el.textContent=RAW.slice(0,++i); setTimeout(step,55);
+      }})();
+    }});
+  }}
+  (async function loop(){{
+    while(true){{
+      el.classList.remove("fade");
+      await type();                 // 1) печатается «сырой» текст
+      await wait(320);
+      el.innerHTML=MARK;            // 2) неуверенные термины — красным
+      await wait(700);
+      el.innerHTML=FINAL;           // 3) исправление: синие термины + пунктуация
+      el.querySelectorAll(".hl").forEach(function(s){{s.classList.add("just");}});
+      await wait(560);
+      el.querySelectorAll(".hl").forEach(function(s){{s.classList.remove("just");}});
+      await wait(2600);             // держим чистый результат
+      el.classList.add("fade");     // 4) плавно гаснет и цикл повторяется
+      await wait(380);
+    }}
+  }})();
+}})();
 </script>
 <!-- GoatCounter — cookieless-аналитика, без кук и баннера согласия -->
 <script data-goatcounter="https://voica.goatcounter.com/count"
