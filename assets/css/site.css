@@ -137,5 +137,14 @@ section{padding:78px 0}
 /* Герой занимает всю высоту первого экрана, контент центрируется по вертикали. Надёжно при
    любом размере и зуме — media-query по размерам ненадёжен из-за OS-scaling (24"@150% отдаёт
    браузеру ~1280px CSS, неотличимо от ноутбука). Только десктоп; на мобиле герой течёт как обычно. */
-@media (min-width:901px){.hero{min-height:calc(100vh - 64px);display:flex;align-items:center}.hero>.wrap{width:100%}}
+@media (min-width:901px){
+  .hero{min-height:calc(100vh - 64px);display:flex;align-items:center}
+  .hero>.wrap{width:100%}
+  /* Контент героя масштабируется по высоте вьюпорта, чтобы первый экран влезал целиком
+     даже на низких десктопных вьюпортах (13" с закладками, 24"@150% ≈ 1280×700–800). */
+  .hero h1{font-size:clamp(30px,min(5.2vw,6.6vh),58px);margin:clamp(4px,.6vh,6px) 0 clamp(12px,2.2vh,22px)}
+  .lede{font-size:clamp(15px,min(1.5vw,2vh),19px)}
+  .hero-cta{margin:clamp(16px,3vh,30px) 0 clamp(10px,1.6vh,16px)}
+  .eyebrow{margin-bottom:clamp(8px,1.4vh,14px)}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
