@@ -22,4 +22,14 @@
 - Website: https://voica.ru/ (Russian), https://voica.ru/en/ (English)
 - Download for macOS: https://github.com/Inhum/voica/releases/latest
 - Download for Windows: https://github.com/Inhum/voica-win/releases/latest
-- Source code: https://github.com/Inhum
+- Source code (macOS): https://github.com/Inhum/voica
+- Source code (Windows): https://github.com/Inhum/voica-win
+- Documentation (RU): https://github.com/Inhum/voica/blob/main/README.ru.md
+- Documentation (EN): https://github.com/Inhum/voica/blob/main/README.md
+- Releases / changelog: https://github.com/Inhum/voica/releases
+
+## Limitations
+- Not code-signed yet: first launch needs "Open Anyway" (macOS: System Settings → Privacy &
+  Security) or a SmartScreen confirmation (Windows).
+- macOS build is Apple Silicon only (no Intel).
+- Recognition languages: Russian and English only.

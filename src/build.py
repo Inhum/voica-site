@@ -141,9 +141,10 @@ def render(lang):
         "description": m["desc"],
         "url": canon,
         "inLanguage": lang,
-        "softwareVersion": "0.9",
         "license": "https://opensource.org/licenses/MIT",
         "downloadUrl": "https://github.com/Inhum/voica/releases/latest",
+        "softwareHelp": {"@type": "CreativeWork", "url": readme_url},
+        "sameAs": ["https://github.com/Inhum/voica", "https://github.com/Inhum/voica-win"],
         "author": {"@type": "Person", "name": "Ivan Ushakov"},
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
     }, ensure_ascii=False)
