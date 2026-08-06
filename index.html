@@ -56,7 +56,7 @@
     <div class="mock-body">
       <span class="mrec"><b></b>ЗАПИСЬ · ЛОКАЛЬНО</span>
       <div class="mwv"><i style="animation-delay:0.00s"></i><i style="animation-delay:0.08s"></i><i style="animation-delay:0.16s"></i><i style="animation-delay:0.24s"></i><i style="animation-delay:0.32s"></i><i style="animation-delay:0.40s"></i><i style="animation-delay:0.48s"></i><i style="animation-delay:0.56s"></i><i style="animation-delay:0.64s"></i><i style="animation-delay:0.72s"></i><i style="animation-delay:0.80s"></i><i style="animation-delay:0.88s"></i><i style="animation-delay:0.96s"></i><i style="animation-delay:1.04s"></i></div>
-      <div class="mres" id="mres">Поставил <span class="hl">GigaAM</span> и развернул <span class="hl">Kubernetes</span> через <span class="hl">kubectl</span>.</div>
+      <div class="mres" id="mres">Поставил <span class="hl">GigaAM</span> и задеплоил в <span class="hl">Kubernetes</span> через <span class="hl">kubectl</span>.</div>
       <div class="mhint"><span class="mkbd">⌥</span> удерживайте, чтобы говорить · текст уже в буфере</div>
     </div>
   </div>
@@ -134,7 +134,7 @@ document.getElementById("theme").onclick=function(){var c=r.getAttribute("data-t
 (function(){
   var el=document.getElementById("mres");
   if(!el||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var RAW="\u043f\u043e\u0441\u0442\u0430\u0432\u0438\u043b \u0433\u0438\u0433\u0430\u0430\u043c \u0438 \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u043b \u043a\u0443\u0431\u0435\u0440\u043d\u0435\u0442\u0438\u0441 \u0447\u0435\u0440\u0435\u0437 \u043a\u0443\u0431\u0435\u043a\u0442\u0435\u043b", MARK="\u043f\u043e\u0441\u0442\u0430\u0432\u0438\u043b <span class=\"raw-term\">\u0433\u0438\u0433\u0430\u0430\u043c</span> \u0438 \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u043b <span class=\"raw-term\">\u043a\u0443\u0431\u0435\u0440\u043d\u0435\u0442\u0438\u0441</span> \u0447\u0435\u0440\u0435\u0437 <span class=\"raw-term\">\u043a\u0443\u0431\u0435\u043a\u0442\u0435\u043b</span>", FINAL="\u041f\u043e\u0441\u0442\u0430\u0432\u0438\u043b <span class=\"hl\">GigaAM</span> \u0438 \u0440\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u043b <span class=\"hl\">Kubernetes</span> \u0447\u0435\u0440\u0435\u0437 <span class=\"hl\">kubectl</span>.";
+  var RAW="\u043f\u043e\u0441\u0442\u0430\u0432\u0438\u043b \u0433\u0438\u0433\u0430\u0430\u043c \u0438 \u0437\u0430\u0434\u0435\u043f\u043b\u043e\u0438\u043b \u0432 \u043a\u0443\u0431\u0435\u0440\u043d\u0435\u0442\u0438\u0441 \u0447\u0435\u0440\u0435\u0437 \u043a\u0443\u0431\u0435\u043a\u0442\u0435\u043b", MARK="\u043f\u043e\u0441\u0442\u0430\u0432\u0438\u043b <span class=\"raw-term\">\u0433\u0438\u0433\u0430\u0430\u043c</span> \u0438 \u0437\u0430\u0434\u0435\u043f\u043b\u043e\u0438\u043b \u0432 <span class=\"raw-term\">\u043a\u0443\u0431\u0435\u0440\u043d\u0435\u0442\u0438\u0441</span> \u0447\u0435\u0440\u0435\u0437 <span class=\"raw-term\">\u043a\u0443\u0431\u0435\u043a\u0442\u0435\u043b</span>", FINAL="\u041f\u043e\u0441\u0442\u0430\u0432\u0438\u043b <span class=\"hl\">GigaAM</span> \u0438 \u0437\u0430\u0434\u0435\u043f\u043b\u043e\u0438\u043b \u0432 <span class=\"hl\">Kubernetes</span> \u0447\u0435\u0440\u0435\u0437 <span class=\"hl\">kubectl</span>.";
   var wait=function(ms){return new Promise(function(r){setTimeout(r,ms);});};
   function type(){
     el.textContent=""; el.classList.add("typing"); var i=0;

@@ -56,7 +56,7 @@
     <div class="mock-body">
       <span class="mrec"><b></b>RECORDING · LOCAL</span>
       <div class="mwv"><i style="animation-delay:0.00s"></i><i style="animation-delay:0.08s"></i><i style="animation-delay:0.16s"></i><i style="animation-delay:0.24s"></i><i style="animation-delay:0.32s"></i><i style="animation-delay:0.40s"></i><i style="animation-delay:0.48s"></i><i style="animation-delay:0.56s"></i><i style="animation-delay:0.64s"></i><i style="animation-delay:0.72s"></i><i style="animation-delay:0.80s"></i><i style="animation-delay:0.88s"></i><i style="animation-delay:0.96s"></i><i style="animation-delay:1.04s"></i></div>
-      <div class="mres" id="mres">I installed <span class="hl">GigaAM</span> and deployed <span class="hl">Kubernetes</span> via <span class="hl">kubectl</span>.</div>
+      <div class="mres" id="mres">I installed <span class="hl">GigaAM</span> and deployed it to <span class="hl">Kubernetes</span> via <span class="hl">kubectl</span>.</div>
       <div class="mhint"><span class="mkbd">⌥</span> hold to talk · text is already on the clipboard</div>
     </div>
   </div>
@@ -134,7 +134,7 @@ document.getElementById("theme").onclick=function(){var c=r.getAttribute("data-t
 (function(){
   var el=document.getElementById("mres");
   if(!el||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var RAW="i installed gigaam and deployed kubernetis via kubectl", MARK="i installed <span class=\"raw-term\">gigaam</span> and deployed <span class=\"raw-term\">kubernetis</span> via <span class=\"raw-term\">kubectl</span>", FINAL="I installed <span class=\"hl\">GigaAM</span> and deployed <span class=\"hl\">Kubernetes</span> via <span class=\"hl\">kubectl</span>.";
+  var RAW="i installed gigaam and deployed it to kubernetis via kubectl", MARK="i installed <span class=\"raw-term\">gigaam</span> and deployed it to <span class=\"raw-term\">kubernetis</span> via <span class=\"raw-term\">kubectl</span>", FINAL="I installed <span class=\"hl\">GigaAM</span> and deployed it to <span class=\"hl\">Kubernetes</span> via <span class=\"hl\">kubectl</span>.";
   var wait=function(ms){return new Promise(function(r){setTimeout(r,ms);});};
   function type(){
     el.textContent=""; el.classList.add("typing"); var i=0;
