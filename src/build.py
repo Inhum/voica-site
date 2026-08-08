@@ -2,7 +2,17 @@
 """Генератор сайта Voica. Контент двуязычный (единый источник ниже) → две статические
 страницы: index.html (RU, корень) и en/index.html (EN). Текст вшивается в HTML (SEO),
 без рантайм-i18n. Запуск: python3 src/build.py  (из корня репозитория)."""
-import os, json
+import os, json, re
+
+# Знак Boosty одной строкой, монохромный: fill="currentColor" — цвет наследуется от текста,
+# поэтому иконка сама живёт и в светлой, и в тёмной теме, без второго файла и без оранжевого,
+# который выпадал бы из палитры (см. BRAND.md).
+BOOSTY = "https://boosty.to/voica"
+BOOSTY_MARK = ('<svg class="bst" viewBox="0 0 831 1000" aria-hidden="true" fill="currentColor">'
+               '<path d="M26.2 597.3 199.1 0h265l-53.6 185.2c-.6 1-1 2.1-1.3 3.3l-140.7 489h131.3'
+               'C344.8 814.6 301.9 922.1 271 1000 28.7 997.2-39.2 823.6 20.2 618.3M271.9 1000'
+               'l319.4-460H455.8l117.9-294.7c202.4 21.3 297.2 180.4 241.5 373-59.9 207-302.3 381.7-538.3 381.7'
+               'C275.2 1000 273.6 1000 271.9 1000z"/></svg>')
 
 SITE = "https://voica.ru"
 EXT = 'target="_blank" rel="noopener"'   # внешние ссылки открываем в новом табе (лендинг остаётся)
@@ -98,12 +108,15 @@ C = {
              "Mac 13+ (Apple Silicon) · Windows 10/11 · the app isn't signed yet — your system will ask once on first launch."),
  "foot.left":("© 2026 Ivan Ushakov · MIT · Открытая разработка","© 2026 Ivan Ushakov · MIT · Built in the open"),
  "foot.sber":("Сбер","Sber"),
+ "support.cta":("Voica бесплатна. Поддержать разработку — на Boosty.",
+                "Voica is free. You can back the work on Boosty."),
  "faq.eyebrow":("Вопросы и ответы","Questions & answers"),
  "faq.title":("Частые вопросы","Frequently asked questions"),
  "faq.q1":("Нужен ли интернет?","Do I need an internet connection?"),
  "faq.a1":("Для облачного движка — да. Локальный движок работает полностью офлайн: без интернета, без ключа, и аудио не покидает устройство.","For the cloud engine, yes. The local engine works fully offline — no internet, no key, and audio never leaves your device."),
  "faq.q2":("Это платно?","Is it free?"),
- "faq.a2":("Voica бесплатна, код открыт под лицензией MIT. Для облачного движка нужен свой бесплатный ключ Groq; локальный движок работает вообще без ключа.","Voica is free and open source under the MIT license. The cloud engine needs your own free Groq key; the local engine needs no key at all."),
+ "faq.a2":('Voica бесплатна, код открыт под лицензией MIT. Для облачного движка нужен свой бесплатный ключ Groq; локальный движок работает вообще без ключа. Платных функций не появится — если Voica экономит вам время, поддержать разработку можно на <a target="_blank" rel="noopener" href="https://boosty.to/voica">Boosty</a>.',
+          'Voica is free and open source under the MIT license. The cloud engine needs your own free Groq key; the local engine needs no key at all. There will be no paid features — if Voica saves you time, you can back the work on <a target="_blank" rel="noopener" href="https://boosty.to/voica">Boosty</a>.'),
  "faq.q3":("Какие языки поддерживаются?","Which languages are supported?"),
  "faq.a3":("Русский и английский, включая смешанную речь. Локальная модель GigaAM особенно сильна на русском и ставит пунктуацию из коробки.","Russian and English, including mixed speech. The local GigaAM model is especially strong on Russian and adds punctuation out of the box."),
  "faq.q4":("Мои данные приватны?","Is my data private?"),
@@ -156,10 +169,13 @@ def render(lang):
     faqs = "".join(
         f'<details><summary>{t[f"faq.q{n}"]}</summary><p>{t[f"faq.a{n}"]}</p></details>'
         for n in range(1,9))
+    # В разметке ответов бывают ссылки; в JSON-LD кладём чистый текст — поисковику разметка
+    # в ответе не нужна, а лишние теги там только мешают.
+    strip = lambda s: re.sub(r"<[^>]+>", "", s)
     faq_ld = json.dumps({
         "@context": "https://schema.org", "@type": "FAQPage",
         "mainEntity": [{"@type": "Question", "name": t[f"faq.q{n}"],
-                        "acceptedAnswer": {"@type": "Answer", "text": t[f"faq.a{n}"]}}
+                        "acceptedAnswer": {"@type": "Answer", "text": strip(t[f"faq.a{n}"])}}
                        for n in range(1, 9)],
     }, ensure_ascii=False)
     return f'''<!doctype html>
@@ -280,10 +296,13 @@ def render(lang):
     <a class="btn btn-ghost" {EXT} href="https://github.com/Inhum/voica-win/releases/latest">{t["cta.win"]}</a>
   </div>
   <p class="hero-note" style="margin-top:20px">{t["cta.note"]}</p>
+  <p class="support"><a {EXT} href="{BOOSTY}">{BOOSTY_MARK}{t["support.cta"]}</a></p>
 </div></div></section>
 
 <footer class="foot"><div class="wrap foot-in">
   <div>{t["foot.left"]}</div>
+  <!-- Ссылки на поддержку в футере намеренно НЕТ: блок скачивания идёт прямо над ним, и
+       вторая просьба через сто пикселей выглядит навязчиво. Достаточно строки там и ответа в FAQ. -->
   <nav class="foot-nav"><a {EXT} href="https://github.com/Inhum">GitHub</a> · <a {EXT} href="{readme_url}">{t["nav.docs"]}</a> · <a {EXT} href="https://t.me/ai_weekly_brief">AI Weekly Brief</a></nav>
   <div class="foot-mono">whisper-large-v3-turbo · gigaam-v3-e2e-ctc · GigaAM © {t["foot.sber"]}</div>
 </div></footer>

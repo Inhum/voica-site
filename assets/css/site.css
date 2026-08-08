@@ -40,6 +40,17 @@ code{font-family:var(--font-mono);font-size:.85em}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 16px}
 .hero-note{font-size:14px;color:var(--ink-faint)}.hero-note b{color:var(--ink-soft);font-weight:500}
 
+/* Строка поддержки под кнопками скачивания. Не кнопка — она бы конкурировала с самим
+   скачиванием; ссылка со знаком Boosty в цвете текста (currentColor), поэтому обе темы
+   обслуживаются одним файлом. */
+.support{margin-top:18px;font-size:14px}
+.support a{display:inline-flex;align-items:flex-start;gap:8px;color:var(--ink-soft);
+  text-decoration:none;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
+.support a:hover{color:var(--brand);border-bottom-color:currentColor}
+/* flex-start + сдвиг вниз: на узком экране строка переносится, и по центру знак «уплывал»
+   от текста. Так он всегда стоит у первой строки. */
+.support .bst{width:15px;height:15px;flex:none;opacity:.85;margin-top:.18em}
+
 /* Мокап (фикс-тёмный, как «скриншот») */
 .mock{background:#151b25;border:1px solid #2b3446;border-radius:var(--radius-card);box-shadow:0 30px 70px -26px rgba(6,12,26,.5);overflow:hidden}
 .mock-bar{height:36px;background:linear-gradient(#20293a,#1a2130);display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:0 15px;border-bottom:1px solid #2b3446;color:#8b97ac}
@@ -117,6 +128,9 @@ section{padding:78px 0}
 .faq summary::after{content:"+";font-family:var(--font-mono);font-size:24px;font-weight:400;color:var(--brand);line-height:1}
 .faq details[open] summary::after{content:"−"}
 .faq details p{margin:0;padding:0 0 22px;color:var(--ink-soft);font-size:16px;line-height:1.6;max-width:66ch}
+/* Ссылки внутри ответов: без этого они наследуют серый текст абзаца и не читаются как ссылки. */
+.faq details p a{color:var(--brand);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s}
+.faq details p a:hover{border-bottom-color:currentColor}
 
 .cta{text-align:center;padding:20px 0 40px}
 .cta-box{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:56px 40px;box-shadow:var(--shadow-card)}
