@@ -1,2 +1,5 @@
 # macOS
 .DS_Store
+
+# Картинки, сгенерённые из posters/*.html — в репо только исходники
+posters/*.png

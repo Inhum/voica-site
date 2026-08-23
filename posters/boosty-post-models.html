@@ -1,0 +1,99 @@
+<!-- Картинка к посту на Boosty «Провайдер убрал модель. Ничего не сломалось» (1150×1250 —
+     двойной размер от рекомендованных площадкой 575×625).
+     Правь тут и перегенери:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+       --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --virtual-time-budget=3500 \
+       --window-size=1150,1250 --screenshot="posters/boosty-post-models.png" "file://$PWD/posters/boosty-post-models.html"
+     Стиль — по BRAND.md: бумага/чернила, синий акцент, id моделей моноширинным (как в бренд-буке
+     для технического). Без градиентной «нейрослоп»-эстетики и без glow. -->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1150px;height:1250px;overflow:hidden}
+  body{
+    background:#0E1116;
+    background-image:radial-gradient(900px 700px at 50% -10%, #1b2740 0%, rgba(27,39,64,0) 62%);
+    color:#ECEFF3;
+    font-family:"Golos Text",-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:0 84px 90px;   /* нижний отступ — под строку с адресом сайта */
+  }
+
+  .mark{width:74px;height:74px;display:block;margin-bottom:44px}
+
+  h1{font-family:"Onest",sans-serif;font-weight:700;font-size:62px;line-height:1.08;
+     letter-spacing:-.025em;text-align:center}
+  h1 em{font-style:normal;color:#4E93FF}
+  .sub{font-size:27px;color:#98A2B3;margin-top:22px;text-align:center;line-height:1.35}
+
+  /* Цепочка моделей: первая снята провайдером, вторая подхватила. */
+  .chain{margin-top:66px;width:100%;display:flex;flex-direction:column;gap:14px}
+  .row{display:flex;align-items:center;gap:18px;padding:20px 24px;border-radius:14px;
+       border:1px solid #212936;background:#141A22}
+  .row .id{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;color:#ECEFF3}
+  .row .tag{margin-left:auto;font-size:19px;color:#5B6472}
+
+  .dead{border-color:#2A1E22;background:#161016}
+  .dead .id{color:#6B727C;text-decoration:line-through;text-decoration-thickness:2px}
+  .dead .tag{color:#8C5A5A}
+
+  .live{border-color:#2A4A80;background:#141F30}
+  .live .id{color:#7FB2FF}
+  .live .tag{color:#4E93FF;font-weight:500}
+
+  .dot{width:9px;height:9px;border-radius:50%;flex:none;background:#39414E}
+  .dead .dot{background:#7A4A4A}
+  .live .dot{background:#4E93FF}
+
+  .foot{position:absolute;bottom:64px;left:0;right:0;text-align:center;
+        font-family:"Onest",sans-serif;font-weight:600;font-size:28px;color:#4E93FF}
+</style>
+</head>
+<body>
+  <svg class="mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B8DF0"/><stop offset="1" stop-color="#1A6BE0"/></linearGradient></defs>
+    <rect width="64" height="64" rx="15" fill="url(#g)"/>
+    <g fill="#fff">
+      <rect x="14" y="27" width="5" height="10" rx="2.5"/>
+      <rect x="23" y="20" width="5" height="24" rx="2.5"/>
+      <rect x="32" y="14" width="5" height="36" rx="2.5"/>
+      <rect x="41" y="22" width="5" height="20" rx="2.5"/>
+      <rect x="50" y="28" width="5" height="8" rx="2.5" fill="#8FD6EA"/>
+    </g>
+  </svg>
+
+  <h1>Провайдер убрал модель.<br><em>Ничего не сломалось</em></h1>
+  <div class="sub">Voica не хранит имя модели жёстко —<br>берёт лучшую доступную из живого списка</div>
+
+  <div class="chain">
+    <div class="row dead">
+      <span class="dot"></span><span class="id">llama-3.3-70b-versatile</span>
+      <span class="tag">снята провайдером</span>
+    </div>
+    <div class="row live">
+      <span class="dot"></span><span class="id">openai/gpt-oss-120b</span>
+      <span class="tag">работает сейчас</span>
+    </div>
+    <div class="row">
+      <span class="dot"></span><span class="id">qwen/qwen3.6-27b</span>
+      <span class="tag">запас</span>
+    </div>
+    <div class="row">
+      <span class="dot"></span><span class="id">openai/gpt-oss-20b</span>
+      <span class="tag">запас</span>
+    </div>
+    <div class="row">
+      <span class="dot"></span><span class="id">llama-3.1-8b-instant</span>
+      <span class="tag">запас</span>
+    </div>
+  </div>
+
+  <div class="foot">voica.ru</div>
+</body>
+</html>
